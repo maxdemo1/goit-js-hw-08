@@ -28,7 +28,6 @@ ol {
     height: 200px;
     object-fit: cover;
     transition: transform 250ms ease-in-out;
-    background-color: transparent;
 }
 
 .gallery-link:hover .gallery-image {

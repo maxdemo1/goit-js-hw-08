@@ -64,18 +64,6 @@ const images = [
   },
 ];
 
-/*
-<li class="gallery-item">
-  <a class="gallery-link" href="large-image.jpg">
-    <img
-      class="gallery-image"
-      src="small-image.jpg"
-      data-source="large-image.jpg"
-      alt="Image description"
-    />
-  </a>
-</li>;
-*/
 const imagesHtmlCode = () => {
   let resultcode = '';
   for (const image of images) {
@@ -97,7 +85,6 @@ document
   .insertAdjacentHTML('afterbegin', imagesHtmlCode());
 
 const gallery = document.querySelector('.gallery');
-const galleryLink = document.querySelectorAll('.gallery-link');
 gallery.addEventListener('click', event => event.preventDefault());
 gallery.addEventListener('click', selectImage);
 function selectImage(event) {
@@ -106,7 +93,7 @@ function selectImage(event) {
   }
   const bigImage = basicLightbox.create(
     `
-		<img width="1400" height="900" src="${event.target.dataset.source}">
+		<img width="1280" height="720" src="${event.target.dataset.source}">
 	`
   );
   bigImage.show();

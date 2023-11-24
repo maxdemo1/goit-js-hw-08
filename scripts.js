@@ -87,21 +87,30 @@ document
 const gallery = document.querySelector('.gallery');
 gallery.addEventListener('click', event => event.preventDefault());
 gallery.addEventListener('click', selectImage);
+
 function selectImage(event) {
   if (event.target.nodeName !== 'IMG') {
     return;
   }
+  const keyEscape = event => {
+    if (event.key == 'Escape') {
+      bigImage.close();
+    }
+  };
   const bigImage = basicLightbox.create(
     `
 		<img width="1280" height="720" src="${event.target.dataset.source}">
-	`
+	`,
+
+    {
+      onShow: bigImage => {
+        document.addEventListener('keydown', keyEscape);
+      },
+
+      onClose: bigImage => {
+        document.removeEventListener('keydown', keyEscape);
+      },
+    }
   );
   bigImage.show();
-  if (bigImage.visible()) {
-    document.addEventListener('keydown', event => {
-      if (event.key == 'Escape') {
-        bigImage.close();
-      }
-    });
-  }
 }
